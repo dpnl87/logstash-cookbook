@@ -6,13 +6,12 @@ provisioner:
   name: chef_solo
 
 platforms:
-  - name: oel64-64
+  - name: centos-65
     driver:
-      box: oel64-64
-      box_url: https://storage.us2.oraclecloud.com/v1/istoilis-istoilis/vagrant/oel64-64.box
+      box: chef/centos-6.5
 
 suites:
   - name: default
     run_list:
-      - recipe[cookbook_template::default]
+      - recipe[logstash::default]
     attributes:
