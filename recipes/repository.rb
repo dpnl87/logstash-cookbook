@@ -17,4 +17,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include_recipe 'logstash::repository'
+yum_repository node['logstash']['repo']['name'] do
+  description node['logstash']['repo']['desc']
+  baseurl node['logstash']['repo']['base']
+  gpgcheck node['logstash']['repo']['gpgcheck']
+  gpgkey node['logstash']['repo']['gpgkey']
+  action :create
+end

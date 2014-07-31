@@ -1,7 +1,7 @@
 #
 # Author:: Daniel Paulus (<daniel.paulus@icemobile.com>)
-# Cookbook Name:: logstash
-# Recipe:: repository
+# Cookbook Name:: elasticsearch
+# Attributes:: default
 #
 # Copyright 2014, IceMobile.
 #
@@ -17,4 +17,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include_recipe 'logstash::repository'
+default['logstash']['repo']['name']     = 'logstash'
+default['logstash']['repo']['desc']     = 'logstash repository for 1.4.x packages'
+default['logstash']['repo']['base']     = 'http://packages.elasticsearch.org/logstash/1.4/centos'
+default['logstash']['repo']['gpgcheck'] = true
+default['logstash']['repo']['gpgkey']   = 'http://packages.elasticsearch.org/GPG-KEY-elasticsearch'
