@@ -18,3 +18,4 @@
 # limitations under the License.
 
 include_recipe 'logstash::repository'
+include_recipe 'logstash::packages'

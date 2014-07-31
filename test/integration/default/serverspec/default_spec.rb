@@ -10,3 +10,7 @@ describe yumrepo('logstash') do
   it { should exist }
   it { should be_enabled }
 end
+
+describe package('java-1.7.0-openjdk') do
+  it { should be_installed }
+end
