@@ -20,3 +20,8 @@
 package node['logstash']['java']['package']['name'] do
   action :install
 end
+
+package node['logstash']['package']['name'] do
+  version node['logstash']['package']['version']
+  action :install
+end
