@@ -1,7 +1,7 @@
 #
 # Author:: Daniel Paulus (<daniel.paulus@icemobile.com>)
 # Cookbook Name:: logstash
-# Recipe:: repository
+# Recipe:: config
 #
 # Copyright 2014, IceMobile.
 #
@@ -17,6 +17,37 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include_recipe 'logstash::repository'
-include_recipe 'logstash::packages'
-include_recipe 'logstash::config'
+directory '/etc/logstash' do
+  owner 'root'
+  group 'root'
+  mode 0755
+  action :create
+end
+
+directory '/etc/logstash/conf.d' do
+  owner 'root'
+  group 'root'
+  mode 0775
+  action :create
+end
+
+template '/etc/logstash/conf.d/input.conf' do
+  source 'input.conf.erb'
+  owner 'logstash'
+  group 'logstash'
+  mode 0755
+end
+
+template '/etc/logstash/conf.d/filter.conf' do
+  source 'filter.conf.erb'
+  owner 'logstash'
+  group 'logstash'
+  mode 0755
+end
+
+template '/etc/logstash/conf.d/output.conf' do
+  source 'output.conf.erb'
+  owner 'logstash'
+  group 'logstash'
+  mode 0755
+end
