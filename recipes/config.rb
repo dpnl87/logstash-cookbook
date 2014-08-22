@@ -50,4 +50,7 @@ template '/etc/logstash/conf.d/output.conf' do
   owner 'logstash'
   group 'logstash'
   mode 0755
+  variables({
+    :elasticsearch_server => node['logstash']['config']['elasticsearch_server']
+  })
 end

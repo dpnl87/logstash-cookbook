@@ -27,3 +27,5 @@ default['logstash']['java']['package']['name']  = 'java-1.7.0-openjdk'
 
 default['logstash']['package']['name']    = 'logstash'
 default['logstash']['package']['version'] = '1.4.2-1_2c0f5a1'
+
+default['logstash']['config']['elasticsearch_server'] = 'localhost'
