@@ -30,4 +30,4 @@ default['logstash']['package']['version'] = '1.4.2-1_2c0f5a1'
 
 default['logstash']['service']['name'] = 'logstash'
 
-default['logstash']['config']['elasticsearch_server'] = '127.0.0.1'
+default['logstash']['config']['elasticsearch_server'] = '172.0.0.1'
