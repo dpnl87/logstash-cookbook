@@ -54,3 +54,8 @@ template '/etc/logstash/conf.d/output.conf' do
     :elasticsearch_server => node['logstash']['config']['elasticsearch_server']
   })
 end
+
+service node['logstash']['service']['name'] do
+  action [:enable, :start]
+  supports status: true, restart: true, reload: true
+end
