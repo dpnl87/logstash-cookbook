@@ -55,6 +55,13 @@ template '/etc/logstash/conf.d/output.conf' do
   })
 end
 
+template '/etc/init.d/logstash' do
+  source 'init-logstash.erb'
+  owner 'root'
+  group 'root'
+  mode 0755
+end
+
 service node['logstash']['service']['name'] do
   action [:enable, :start]
   supports status: true, restart: true, reload: true
