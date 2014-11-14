@@ -31,8 +31,8 @@ directory '/etc/logstash/conf.d' do
   action :create
 end
 
-template '/etc/logstash/conf.d/input.conf' do
-  source 'input.conf.erb'
+template '/etc/logstash/conf.d/input_syslog.conf' do
+  source 'input_syslog.conf.erb'
   owner 'logstash'
   group 'logstash'
   mode 0755
