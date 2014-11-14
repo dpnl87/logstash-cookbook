@@ -38,6 +38,13 @@ template '/etc/logstash/conf.d/input_syslog.conf' do
   mode 0755
 end
 
+template '/etc/logstash/conf.d/input_application_tcp.conf' do
+  source 'input_application_tcp.conf.erb'
+  owner 'logstash'
+  group 'logstash'
+  mode 0755
+end
+
 template '/etc/logstash/conf.d/filter.conf' do
   source 'filter.conf.erb'
   owner 'logstash'
