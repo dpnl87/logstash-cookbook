@@ -31,6 +31,13 @@ directory '/etc/logstash/conf.d' do
   action :create
 end
 
+directory '/etc/logstash/scripts' do
+  owner 'root'
+  group 'root'
+  mode 0775
+  action :create
+end
+
 template '/etc/logstash/conf.d/input_syslog.conf' do
   source 'input_syslog.conf.erb'
   owner 'logstash'

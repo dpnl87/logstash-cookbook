@@ -1,0 +1,20 @@
+#!/bin/bash
+#
+# This script downloads the last cloudtrail log file and appends it to a local
+# log so Logstash can index it.
+#
+# For this script to work you must enable AWS_CREDENTIAL_FILE variable.
+#
+bucketname="loyalties-cloudtrail"
+# Get latest log file path
+logfile_path=`aws s3 ls s3://$bucketname --recursive | tail -1 | awk '{print $4}'`
+# Get the log file name without extension
+logfile=`basename $logfile_path .gz`
+# Download latest file
+aws s3 cp s3://$bucketname/$logfile_path .
+# unzip file
+gunzip $logfile'.gz'
+# parse logfile to valid json and append to cloudtrail log
+cat $logfile | jq -r -M .Records[] -c >> /var/log/cloudtrail.json
+# remove the downloaded logfile
+rm -f $logfile
