@@ -36,6 +36,7 @@ template '/etc/logstash/conf.d/input_syslog.conf' do
   owner 'logstash'
   group 'logstash'
   mode 0755
+  notifies :reload, "service[logstash]", :delayed
 end
 
 template '/etc/logstash/conf.d/input_application_tcp.conf' do
@@ -43,6 +44,7 @@ template '/etc/logstash/conf.d/input_application_tcp.conf' do
   owner 'logstash'
   group 'logstash'
   mode 0755
+  notifies :reload, "service[logstash]", :delayed
 end
 
 template '/etc/logstash/conf.d/filter.conf' do
@@ -50,6 +52,7 @@ template '/etc/logstash/conf.d/filter.conf' do
   owner 'logstash'
   group 'logstash'
   mode 0755
+  notifies :reload, "service[logstash]", :delayed
 end
 
 template '/etc/logstash/conf.d/output.conf' do
@@ -60,6 +63,7 @@ template '/etc/logstash/conf.d/output.conf' do
   variables({
     :elasticsearch_server => node['logstash']['config']['elasticsearch_server']
   })
+  notifies :reload, "service[logstash]", :delayed
 end
 
 template '/etc/init.d/logstash' do
@@ -67,9 +71,10 @@ template '/etc/init.d/logstash' do
   owner 'root'
   group 'root'
   mode 0755
+  notifies :reload, "service[logstash]", :delayed
 end
 
 service node['logstash']['service']['name'] do
   action [:enable, :start]
-  supports status: true, restart: true, reload: true
+  supports status: true, restart: true
 end
